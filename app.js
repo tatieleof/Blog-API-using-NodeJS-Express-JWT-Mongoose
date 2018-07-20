@@ -14,5 +14,5 @@ app.use(bodyparser.json())
 
 // rutas base
 app.use('/api', user_routes)
-
+//const PORT = process.env.PORT || 8000; app.listen(PORT, () => { console.log(`App listening on port ${PORT}!`); });
 module.exports = app;

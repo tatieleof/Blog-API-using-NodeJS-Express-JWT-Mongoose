@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var PostSchema = Schema({
     text: String,
-    date: Date,
+    //date: Date,
     // add comments here
 });
 

@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var CommentSchema = Schema({
     userName: String, //not sure how to connect to user
     text: String,
-    date: Date,
+    //date: Date,
     //how to connect to post
 
     
