@@ -4,11 +4,10 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var CommentSchema = Schema({
-    userName: String, //not sure how to connect to user
     text: String,
-    //date: Date,
-    //how to connect to post
-
+    date: Date,
+    author: {type: Schema.ObjectId, ref: "User"},
+    post: {type: Schema.ObjectId, ref: "Post"}
     
 });
 

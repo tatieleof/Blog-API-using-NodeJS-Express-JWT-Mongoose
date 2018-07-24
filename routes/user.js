@@ -17,4 +17,8 @@ api.post('/user', UserController.createUser);
 api.post('/user/login', UserController.login);
 // api.post('/user/payBill', UserController.payBill);
 
+
+api.post('/user/post', UserController.createPost); 
+
+
 module.exports = api;

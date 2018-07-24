@@ -17,23 +17,6 @@ function pruebas(req, res) {
     })
 }
 
-// function payBill(req, res) {
-//     let email = req.body.email;
-//     let billValue = Number(req.body.billValue);
-
-//     User.findOne({ email: email }, function (err, user) {
-
-//         if (user.balance >= billValue) {
-//             let newBalance = user.balance - billValue;
-
-//             User.findByIdAndUpdate(user.id, { balance: newBalance }, function (err, user) {
-//                 res.status(200).send("bill paid! well done, your balance is " + newBalance);
-//             });
-//         } else {
-//             res.status(400).send("not enough money buddy!");
-//         }
-//     })
-// }
 function getUser(req, res) {
     User.find({}, function (err, users) {
         if (err) {
@@ -64,12 +47,7 @@ function createUser(req, res) {
         }
     })
 }
-// function getUserId(req, res) {
-//     console.log(req.params.id);
-//     User.findById(req.params.id, function (err, user) {
-//         res.status(200).send(user);
-//     });
-// }
+
 function login(req, res) {
     let email = req.body.email
     let password = req.body.password

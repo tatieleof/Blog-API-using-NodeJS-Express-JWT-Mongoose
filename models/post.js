@@ -5,8 +5,9 @@ var Schema = mongoose.Schema;
 
 var PostSchema = Schema({
     text: String,
-    //date: Date,
-    // add comments here
+    date: Date,
+    author: {type: Schema.ObjectId, ref: "User"}
 });
 
 module.exports = mongoose.model('Post', PostSchema)
+
