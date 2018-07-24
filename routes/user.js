@@ -14,7 +14,7 @@ api.get('/probando-controlador', UserController.pruebas);
 api.get('/user', [md_logs.writeLog, md_auth.ensureAuth], UserController.getUser);
 api.post('/user', UserController.createUser);
 // api.get('/user/:id', UserController.getUserId);
-// api.post('/user/login', UserController.login);
+api.post('/user/login', UserController.login);
 // api.post('/user/payBill', UserController.payBill);
 
 module.exports = api;

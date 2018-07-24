@@ -70,28 +70,28 @@ function createUser(req, res) {
 //         res.status(200).send(user);
 //     });
 // }
-// function login(req, res) {
-//     let email = req.body.email
-//     let password = req.body.password
+function login(req, res) {
+    let email = req.body.email
+    let password = req.body.password
 
-//     User.findOne({ email: email }, function (err, user) {
-//         if (user) {
+    User.findOne({ email: email }, function (err, user) {
+        if (user) {
 
-//             bcrypt.compare(password, user.password, function (err, check) {
-//                 if (check) {
-//                     res.status(200).send(jwt.createToken(user));
-//                 } else {
-//                     res.status(400).send("contrasenha incorrecta");
-//                 }
-//             });
-//         } else {
-//             res.status(400).send("no existe el usuario");
-//         }
-//     })
-// }
+            bcrypt.compare(password, user.password, function (err, check) {
+                if (check) {
+                    res.status(200).send(jwt.createToken(user));
+                } else {
+                    res.status(400).send("contrasenha incorrecta");
+                }
+            });
+        } else {
+            res.status(400).send("no existe el usuario");
+        }
+    })
+}
 module.exports = {
     getUser,
     pruebas,
     createUser,
-    //login,
+    login,
 };
