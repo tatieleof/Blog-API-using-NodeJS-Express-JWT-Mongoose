@@ -16,8 +16,6 @@ function pruebas(req, res) {
         messsage: 'probando una accion del controlador de la api rest con mongo'
     })
 }
-// // function quienSoy(req, res){
-// // }
 
 // function payBill(req, res) {
 //     let email = req.body.email;
@@ -36,15 +34,15 @@ function pruebas(req, res) {
 //         }
 //     })
 // }
-// function getUser(req, res) {
-//     User.find({}, function (err, users) {
-//         if (err) {
-//             console.log(err.errmsg);
-//         } else {
-//             res.status(200).send(users)
-//         }
-//     })
-// }
+function getUser(req, res) {
+    User.find({}, function (err, users) {
+        if (err) {
+            console.log(err.errmsg);
+        } else {
+            res.status(200).send(users)
+        }
+    })
+}
 function createUser(req, res) {
     var user = new User()
     user.name = req.body.name;
@@ -92,7 +90,7 @@ function createUser(req, res) {
 //     })
 // }
 module.exports = {
-    //getUser,
+    getUser,
     pruebas,
     createUser,
     //login,
