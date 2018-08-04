@@ -8,6 +8,7 @@ var UserSchema = Schema({
     surname: String,
     email: String,
     password: String,
+    post: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
 });
 
 module.exports = mongoose.model('User', UserSchema)

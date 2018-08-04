@@ -7,18 +7,17 @@ var md_logs = require('../middleware/writeLog')
 var api = express.Router()
 
 var multiparty = require('connect-multiparty')
-var md_upload = multiparty({ uploadDir: './uploads/users' })
+// var md_upload = multiparty({ uploadDir: './uploads/users' })
 
-api.get('/post/probando-controlador', PostController.pruebas);
+api.get('/post/probandoPost', PostController.pruebasPost);
+
 // CRUD
-// api.get('/user', [md_logs.writeLog, md_auth.ensureAuth], UserController.getUser);
-// api.post('/user', UserController.createUser);
-// // api.get('/user/:id', UserController.getUserId);
-// api.post('/user/login', UserController.login);
-// // api.post('/user/payBill', UserController.payBill);
 
+api.post('/post', PostController.createPost);
+api.get('/post',  PostController.getPost);
+api.get('/post/:id', PostController.getPostId); 
+// api.delete('/post/delete/:id', PostController.deletePost); 
 
-// api.post('/user/post', UserController.createPost);
 
 
 module.exports = api;

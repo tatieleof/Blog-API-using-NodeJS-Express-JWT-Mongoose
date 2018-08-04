@@ -7,91 +7,82 @@ var Type = require('type-of-is');
 var fs = require('fs');
 var path = require('path');
 
-function pruebas(req, res) {
-    console.log(req.headers);
-    console.log(req.body);
-    console.log(req.params);
+function pruebasPost(req, res) {
+    // console.log(req.headers);
+    // console.log(req.body);
+    // console.log(req.params);
 
     res.status(200).send({
         messsage: 'probando una accion del controlador de la api rest con mongo'
     })
 }
 
-// function payBill(req, res) {
-//     let email = req.body.email;
-//     let billValue = Number(req.body.billValue);
+function createPost(req, res) {
+    var post = new Post()
+    
+    post.title = req.body.title
+    post.text = req.body.text
+    post.author = req.body.author
+    post.save(function (err, data) {
+        if (err) throw err;
+        return res.status(200).send(data)
+        // redirect to home page
+    });
+} 
+function getPost(req, res) {
+    Post.find({}, function (err, post) {
+        if (err) {
+            console.log(err.errmsg);
+        } else {
+            res.status(200).send(post)
+        }
+    })
+}
 
-//     User.findOne({ email: email }, function (err, user) {
-
-//         if (user.balance >= billValue) {
-//             let newBalance = user.balance - billValue;
-
-//             User.findByIdAndUpdate(user.id, { balance: newBalance }, function (err, user) {
-//                 res.status(200).send("bill paid! well done, your balance is " + newBalance);
-//             });
-//         } else {
-//             res.status(400).send("not enough money buddy!");
-//         }
-//     })
-// }
-// function getUser(req, res) {
-//     User.find({}, function (err, users) {
-//         if (err) {
-//             console.log(err.errmsg);
-//         } else {
-//             res.status(200).send(users)
-//         }
-//     })
-// }
-// function createUser(req, res) {
-//     var user = new User()
-//     user.name = req.body.name;
-//     user.surname = req.body.surname;
-//     user.email = req.body.email;
-//     user.password = req.body.password;
-//     bcrypt.hash(req.body.password, null, null, function (err, hash) {
-//         if (err) {
-//             res.status(500).send(err);
-//         } else {
-//             user.password = hash
-//             user.save(function (err, user) {
+function getPostId(req, res) {
+    Post.findById(req.params.id, function (err, post) {
+        if (err){
+            console.log(err.errmsg);
+        } else {
+            res.status(200).send(post);            
+        }
+    });
+}
+// function deletePost(req, res) {
+//     // Post.findByIdAndRemove(req.params.id, function (err, post ) {
+//         try {
+//             Post.findOne({ id: req.params.id }).exec((err, post) => {
 //                 if (err) {
-//                     console.log(err.messsage);
-//                 } else {
-//                     res.status(200).send(user);
+//                     res.status(500).send(err);
 //                 }
-//             })
-//         }
-//     })
-// }
-// // function getUserId(req, res) {
-// //     console.log(req.params.id);
-// //     User.findById(req.params.id, function (err, user) {
-// //         res.status(200).send(user);
-// //     });
-// // }
-// function login(req, res) {
-//     let email = req.body.email
-//     let password = req.body.password
 
-//     User.findOne({ email: email }, function (err, user) {
-//         if (user) {
+//                 post.remove(() => {
+//                     console.log('deleted');
 
-//             bcrypt.compare(password, user.password, function (err, check) {
-//                 if (check) {
-//                     res.status(200).send(jwt.createToken(user));
-//                 } else {
-//                     res.status(400).send("contrasenha incorrecta");
-//                 }
+//                     res.status(200).end();
+                    
+//                 });
 //             });
-//         } else {
-//             res.status(400).send("no existe el usuario");
 //         }
-//     })
+//         catch (err) {
+//             console.log(err);
+//         }
+//         // if (err){
+//         //     console.log(err.errmsg);
+//         // } else {
+//         //     Post.remove
+//         //     res.status(200).remove(post); 
+//         //     console.log('deleted');
+            
+//         // }
+//     // })
 // }
+
 module.exports = {
-    // getUser,
-    pruebas,
-    // createUser,
+    getPost,
+    pruebasPost,
+    createPost,
+    getPostId,
+    // deletePost,
     // login,
-};
+}; 

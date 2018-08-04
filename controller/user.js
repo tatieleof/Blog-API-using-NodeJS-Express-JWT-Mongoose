@@ -7,6 +7,7 @@ var Type = require('type-of-is');
 var fs = require('fs');
 var path = require('path');
 
+
 function pruebas(req, res) {
     console.log(req.headers);
     console.log(req.body);
@@ -16,7 +17,7 @@ function pruebas(req, res) {
         messsage: 'probando una accion del controlador de la api rest con mongo'
     })
 }
-
+// Show users 
 function getUser(req, res) {
     User.find({}, function (err, users) {
         if (err) {
@@ -26,6 +27,7 @@ function getUser(req, res) {
         }
     })
 }
+// Create a new user
 function createUser(req, res) {
     var user = new User()
     user.name = req.body.name;
@@ -47,7 +49,6 @@ function createUser(req, res) {
         }
     })
 }
-
 function login(req, res) {
     let email = req.body.email
     let password = req.body.password
